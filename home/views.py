@@ -11,12 +11,4 @@ def hello_world_view(request):
       <body>
     """
 
-    for question in all_questions:
-        html_content += f"      <p>{question}</p>\n"
-
-    html_content += """
-      </body>
-    </html>
-    """
-
     return HttpResponse(html_content)
