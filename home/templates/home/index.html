@@ -1,19 +1,13 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Resource Hub</title>
-    <link rel="stylesheet" href="{% static 'home/style.css' %}">
-</head>
-<body>
+{% extends 'home/base.html' %}  <!-- This links this child file to your master parent file -->
 
+{% block title %}Homepage - Student Resource Hub{% endblock %}
+
+{% block content %}
     <h1>Welcome to the Student Exam Resource Hub</h1>
     <p class="subtitle">Your clean archive for academic past question papers.</p>
     <hr style="border: 0; height: 1px; background: #bdc3c7; margin: 20px 0;">
     
-    <!-- BRAND NEW SEARCH BAR FORM PANEL -->
+    <!-- SEARCH BAR FORM PANEL -->
     <form method="GET" action="" style="margin-bottom: 30px; display: flex; gap: 10px;">
         <input type="text" name="search_query" placeholder="Search by course code, name, or year..." value="{{ current_search }}" style="flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px;">
         <button type="submit" style="background-color: #2980b9; color: white; border: none; padding: 12px 25px; font-size: 15px; font-weight: bold; border-radius: 6px; cursor: pointer;">Search</button>
@@ -45,6 +39,4 @@
             <p style="color: #e74c3c;">No past questions found matching your search criteria.</p>
         {% endfor %}
     </div>
-
-</body>
-</html>
+{% endblock %}
