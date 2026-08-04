@@ -1,11 +1,10 @@
-{% load static %}  <!-- This line is crucial! It activates static lookups -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Resource Hub</title>
-    <!-- This links your clean style.css file dynamically -->
     <link rel="stylesheet" href="{% static 'home/style.css' %}">
 </head>
 <body>
@@ -14,7 +13,16 @@
     <p class="subtitle">Your clean archive for academic past question papers.</p>
     <hr style="border: 0; height: 1px; background: #bdc3c7; margin: 20px 0;">
     
-    <h2 style="color: #2980b9;">Available Past Questions:</h2>
+    <!-- BRAND NEW SEARCH BAR FORM PANEL -->
+    <form method="GET" action="" style="margin-bottom: 30px; display: flex; gap: 10px;">
+        <input type="text" name="search_query" placeholder="Search by course code, name, or year..." value="{{ current_search }}" style="flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px;">
+        <button type="submit" style="background-color: #2980b9; color: white; border: none; padding: 12px 25px; font-size: 15px; font-weight: bold; border-radius: 6px; cursor: pointer;">Search</button>
+        {% if current_search %}
+            <a href="/" style="background-color: #7f8c8d; color: white; text-decoration: none; padding: 12px 20px; font-size: 15px; font-weight: bold; border-radius: 6px; display: flex; align-items: center;">Clear</a>
+        {% endif %}
+    </form>
+
+    <h2>Available Past Questions:</h2>
 
     <div class="card-container">
         {% for q in all_questions %}
@@ -34,7 +42,7 @@
                 {% endif %}
             </div>
         {% empty %}
-            <p style="color: #e74c3c;">No past questions have been uploaded to the database yet. Go to /admin to add some!</p>
+            <p style="color: #e74c3c;">No past questions found matching your search criteria.</p>
         {% endfor %}
     </div>
 
